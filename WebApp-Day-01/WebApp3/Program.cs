@@ -15,18 +15,30 @@ namespace WebApp3
             {   
                WriteLine($"Run salute: {++counter}");
 
-                if (!ctx.Request.Cookies.ContainsKey("last_value"))
+                if (!ctx.Request.Cookies.ContainsKey("my_id") )
                 {
-                    ctx.Response.Cookies.Append("last_value", "123.456", 
-                        new CookieOptions() {MaxAge = TimeSpan.FromSeconds(60) });
-                    
 
+                    WriteLine("Cookiee my_id set!");
+
+                    ctx.Response.Cookies.Append("my_id", $"{new Random().Next(1, 100_1000)}", 
+                        new CookieOptions() {
+                            MaxAge = TimeSpan.FromSeconds(15), SameSite=SameSiteMode.Lax });
+                
                 }
                 else 
-                    WriteLine("Cookiee set.");
+                    WriteLine("Cookiee my_id exists and not reset!!");
 
-                await ctx.Response.WriteAsync("Salute!!");
-                await ctx.Response.WriteAsync("Salute2!!");
+                if (!ctx.Request.Cookies.ContainsKey("my_data"))
+                {
+                    WriteLine("Cookiee my_data set!");
+                    ctx.Response.Cookies.Append("my_data", $"{new Random().Next(1, 100_1000)}");
+                }
+                else
+                    WriteLine("Cookiee my_data exists and not reset!!");
+
+
+                await ctx.Response.WriteAsync("Cookiee test page, See F12 and console.");
+            
             }
             
             );
