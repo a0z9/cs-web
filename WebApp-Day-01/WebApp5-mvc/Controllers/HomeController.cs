@@ -34,6 +34,20 @@ namespace WebApp5_mvc.Controllers
                 WriteLine($"Sess init {sess.Id}, data set to {d}");
             }
 
+            if (sess.Keys.Contains("student"))
+            {
+                WriteLine($"Sess (id:{sess.Id}) data exists = {sess.GetString("student")}");
+
+            }
+            else
+            {
+                Student st = new Student();
+
+                sess.SetString("student", JsonSerializer.Serialize<Student>(st));
+
+                WriteLine($"Sess init {sess.Id}, Student -> {sess.GetString("student")}");
+            }
+
 
             return View();
         }
