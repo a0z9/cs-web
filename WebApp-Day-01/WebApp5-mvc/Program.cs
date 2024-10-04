@@ -14,7 +14,7 @@ namespace WebApp5_mvc
 
             var app = builder.Build();
 
-            app.UseSession();
+            app.UseSession(new SessionOptions() {IdleTimeout=TimeSpan.FromMinutes(1) });
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
