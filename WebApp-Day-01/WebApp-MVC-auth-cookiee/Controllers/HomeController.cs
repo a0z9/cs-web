@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApp_MVC_auth_cookiee.Models;
 using static System.Console;
@@ -19,6 +20,12 @@ namespace WebApp_MVC_auth_cookiee.Controllers
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize(Roles ="master")]
+        public IActionResult Master()
         {
             return View();
         }
