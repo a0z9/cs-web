@@ -60,8 +60,15 @@ namespace WebApp5_mvc.Controllers
         public IActionResult Status(int id)
         {
             if (id == 404) return View("404");
-            return View();
+            return View(model: new StatusCodeModel { StatusCode = id});
           //     WriteLine($"Error status code: {id}");
+        }
+
+        public void s(int? code) {
+
+            //code = code ?? 500;
+            Response.StatusCode = code ?? 500;
+           // return View();
         }
 
         public void Err() {
