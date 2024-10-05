@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using WebApp_MVC_auth_cookiee.Models;
 using static System.Console;
@@ -34,10 +36,19 @@ namespace WebApp_MVC_auth_cookiee.Controllers
             {
                 { } WriteLine("login failed..");
                 return View("Error", model: new ErrorViewModel { RequestId = "Failed login" });
-            
             }
 
-            return View();
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, student.Id),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, student.Role.Name)
+            };
+
+            var claimId = new ClaimsIdentity(claims, "Cookies");
+            var claimPrincipial = new ClaimsPrincipal(claimId);
+            await HttpContext.SignInAsync(claimPrincipial);
+
+            return Redirect("/");
         }
 
         public IActionResult Privacy()
