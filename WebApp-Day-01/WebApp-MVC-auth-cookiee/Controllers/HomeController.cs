@@ -1,6 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebApp_MVC_auth_cookiee.Models;
+using static System.Console;
+using static WebApp_MVC_auth_cookiee.Models.Students;
 
 namespace WebApp_MVC_auth_cookiee.Controllers
 {
@@ -15,6 +17,26 @@ namespace WebApp_MVC_auth_cookiee.Controllers
 
         public IActionResult Index()
         {
+            return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Check(string? id, string pass)
+        {
+            WriteLine($"{id} -- {pass}");
+            Student? student = students.FirstOrDefault(x => x.Id == id && x.Pass == pass);
+
+            if (student is null)
+            {
+                { } WriteLine("login failed..");
+                return View("Error", model: new ErrorViewModel { RequestId = "Failed login" });
+            
+            }
+
             return View();
         }
 
