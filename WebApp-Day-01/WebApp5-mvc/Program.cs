@@ -16,12 +16,15 @@ namespace WebApp5_mvc
 
             app.UseSession(new SessionOptions() {IdleTimeout=TimeSpan.FromMinutes(1) });
 
-            // Configure the HTTP request pipeline.
+
+            app.Environment.EnvironmentName = "Production";
+
+            //Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
-                
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error2");
             }
+
             app.UseStaticFiles();
 
             // /Home/Orders/25..    ?Page=Home&Table=Orders&Id=25....
@@ -32,6 +35,9 @@ namespace WebApp5_mvc
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.UseStatusCodePages("text/html","<h2>Error, Status: {0}</h2>");
+            app.UseStatusCodePagesWithReExecute("/home/status","?id={0}");
 
             app.Run();
         }

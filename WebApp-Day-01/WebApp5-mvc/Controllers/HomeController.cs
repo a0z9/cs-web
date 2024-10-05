@@ -57,8 +57,22 @@ namespace WebApp5_mvc.Controllers
             return View();
         }
 
+        public IActionResult Status(int id)
+        {
+            if (id == 404) return View("404");
+            return View();
+          //     WriteLine($"Error status code: {id}");
+        }
+
+        public void Err() {
+
+            int a = 1;
+            int b = 12 / (a - 1);
+        
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error2()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
