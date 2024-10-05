@@ -26,11 +26,25 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         
+                        @{
+                            var grades = new List<string> { "Master", "Bachelor", "Phd" };
+                        }
+
+                        @foreach (string grade in grades)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action=@grade>@grade</a>
+                            </li>
+                        }
+
+                        
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Welcome, @User.Identity.Name! Logout</a>
                             </li>
+
                         }
                         else
                         {

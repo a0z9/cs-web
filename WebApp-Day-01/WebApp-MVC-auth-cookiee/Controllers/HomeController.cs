@@ -24,9 +24,25 @@ namespace WebApp_MVC_auth_cookiee.Controllers
             return View();
         }
 
-        [Authorize(Roles ="master")]
+        [Authorize(Roles ="master, phd")]
         public IActionResult Master()
         {
+            return View();
+        }
+
+        [Authorize(Roles = "phd")]
+        public IActionResult Phd()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "phd, master, bachelor")]
+        public IActionResult Bachelor()
+        {
+            return View();
+        }
+
+        public IActionResult Denied() {
             return View();
         }
 
@@ -66,7 +82,8 @@ namespace WebApp_MVC_auth_cookiee.Controllers
             var claimPrincipial = new ClaimsPrincipal(claimId);
             await HttpContext.SignInAsync(claimPrincipial);
 
-            return Redirect(url ?? "/");
+            if (String.IsNullOrEmpty(url) || url=="null") url = "/";
+            return Redirect(url);
         }
 
         public IActionResult Privacy()
