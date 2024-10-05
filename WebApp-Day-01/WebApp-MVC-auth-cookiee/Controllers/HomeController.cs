@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using WebApp_MVC_auth_cookiee.Models;
 using static System.Console;
@@ -24,11 +25,21 @@ namespace WebApp_MVC_auth_cookiee.Controllers
 
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated) return Redirect("/");
             return View();
+        }
+
+        public async Task<IActionResult>  Logout()
+        {
+            if (User.Identity.IsAuthenticated)
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("/");
         }
 
         public async Task<IActionResult> Check(string? id, string pass)
         {
+            if (User.Identity.IsAuthenticated) return Redirect("/");
+
             WriteLine($"{id} -- {pass}");
             Student? student = students.FirstOrDefault(x => x.Id == id && x.Pass == pass);
 
