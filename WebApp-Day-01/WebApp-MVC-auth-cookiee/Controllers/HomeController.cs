@@ -43,7 +43,7 @@ namespace WebApp_MVC_auth_cookiee.Controllers
             return Redirect("/");
         }
 
-        public async Task<IActionResult> Check(string? id, string pass)
+        public async Task<IActionResult> Check(string? id, string pass, string? url)
         {
             if (User.Identity.IsAuthenticated) return Redirect("/");
 
@@ -66,7 +66,7 @@ namespace WebApp_MVC_auth_cookiee.Controllers
             var claimPrincipial = new ClaimsPrincipal(claimId);
             await HttpContext.SignInAsync(claimPrincipial);
 
-            return Redirect("/");
+            return Redirect(url ?? "/");
         }
 
         public IActionResult Privacy()
