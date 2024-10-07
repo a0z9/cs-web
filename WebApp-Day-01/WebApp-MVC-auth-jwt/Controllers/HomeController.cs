@@ -1,12 +1,14 @@
 using System.Diagnostics;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+//using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApp_MVC_auth_jwt.Models;
 using static System.Console;
 using static WebApp_MVC_auth_jwt.Models.Students;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
 
 namespace WebApp_MVC_auth_jwt.Controllers
 {
@@ -54,8 +56,8 @@ namespace WebApp_MVC_auth_jwt.Controllers
 
         public async Task<IActionResult>  Logout()
         {
-            if (User.Identity.IsAuthenticated)
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            if (User.Identity.IsAuthenticated) { }
+            //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return Redirect("/");
         }
 
@@ -78,9 +80,22 @@ namespace WebApp_MVC_auth_jwt.Controllers
                 new Claim(ClaimsIdentity.DefaultRoleClaimType, student.Role.Name)
             };
 
-            var claimId = new ClaimsIdentity(claims, "Cookies");
-            var claimPrincipial = new ClaimsPrincipal(claimId);
-            await HttpContext.SignInAsync(claimPrincipial);
+            var jwt = new JwtSecurityToken(
+                issuer:AOPtions.ISSUER,
+                audience:AOPtions.AUDIENCE,
+                claims: claims,
+                signingCredentials: new SigningCredentials(AOPtions.GetKey(),SecurityAlgorithms.HmacSha256),
+                expires: DateTime.Now.Add(TimeSpan.FromMinutes(5))
+                );
+
+            var jwt2 = new JwtSecurityTokenHandler().WriteToken(jwt); //base64 encoded token
+
+
+            WriteLine(jwt2);
+
+            //var claimId = new ClaimsIdentity(claims, "Cookies");
+            //var claimPrincipial = new ClaimsPrincipal(claimId);
+            //await HttpContext.SignInAsync(claimPrincipial);
 
             if (String.IsNullOrEmpty(url) || url=="null") url = "/";
             return Redirect(url);
