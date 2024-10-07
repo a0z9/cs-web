@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Login form";
+}
+
+<h2>Login form</h2>
+<form method="post" action=@Url.Action("Check","Home")>
+<p>
+<label>Id:</label><br/>
+<input name="id" />
+</p>
+
+ <p>
+ <label>Password:</label><br />
+ <input type="password" name="pass" />
+ </p>
+ <input hidden name="url" id="url"/>
+ <input type="submit" value="login"/>
+
+</form>
+
+<script>
+    const str = location.search;
+    console.log(str);
+    const params = new URLSearchParams(str);
+    const url = params.get('ReturnUrl');
+    console.log(url);
+    document.getElementById("url").setAttribute('value', url);
+
+</script>
