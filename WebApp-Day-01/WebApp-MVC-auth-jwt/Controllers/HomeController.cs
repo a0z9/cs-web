@@ -97,8 +97,10 @@ namespace WebApp_MVC_auth_jwt.Controllers
             //var claimPrincipial = new ClaimsPrincipal(claimId);
             //await HttpContext.SignInAsync(claimPrincipial);
 
-            if (String.IsNullOrEmpty(url) || url=="null") url = "/";
-            return Redirect(url);
+            //if (String.IsNullOrEmpty(url) || url=="null") url = "/";
+            //return Redirect(url);
+            ViewData["token"]=jwt2;
+            return View();
         }
 
         public IActionResult Privacy()
