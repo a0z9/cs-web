@@ -5,19 +5,59 @@
     <title></title>
 </head>
 <body>
-    data page
+    data page <br />
+    <button id="master">Master</button><br/>
+    <button id="bac">Bachelor</button>
 
+    <style>
+        button, p {
+            padding: 5px;
+            margin: 5px;
+        }
+    </style>
 
     <script>
-        var resp = fetch("/index/master", {
-            method: "GET",
-            headers: {
-                "Accept": "application/json", 
-                "Authorization": "Bearer " + sessionStorage['token']
-            }
-        });
-        console.log(resp) 
 
+        //document.getElementById("bac").addEventListener("click", async event => {
+        //    await $.ajax({
+        //        url: "/home/master",
+        //        method: "POST",
+        //        dataType: "json",
+        //        data: {
+        //            email: "a.visitor@email.com",
+        //            message: "Hello!"
+        //        },
+        //        headers: {
+        //            "Accept": "application/json",
+        //            "Authorization": "Bearer " + sessionStorage['token']
+        //        },
+
+        //    });
+
+
+        //});
+
+
+        document.getElementById("master").addEventListener("click", async event => {
+            var resp = await fetch("/home/master", {
+                method: "GET",
+                //redirect: "follow",
+                headers: {
+                    "Accept": "application/json",
+                    "Authorization": "Bearer " + sessionStorage['token']
+                }
+            });
+
+            if (resp.ok === true) {
+
+                console.log(resp)
+                //location.href = resp.url;
+            }
+            else
+                console.log("state: " + resp.status)
+        });
+
+    
     </script>
 
 

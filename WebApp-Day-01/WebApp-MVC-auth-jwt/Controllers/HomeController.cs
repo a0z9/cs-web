@@ -26,6 +26,12 @@ namespace WebApp_MVC_auth_jwt.Controllers
             return View();
         }
 
+        //public IActionResult Test() => View();
+
+
+        [Route("t")]
+        public IActionResult Test() => View();
+
         [Authorize(Roles ="master, phd")]
         public IActionResult Master()
         {
@@ -50,7 +56,7 @@ namespace WebApp_MVC_auth_jwt.Controllers
 
         public IActionResult Login()
         {
-            if (User.Identity.IsAuthenticated) return Redirect("/");
+            //if (User.Identity.IsAuthenticated) return Redirect("/");
             return View();
         }
 
@@ -61,9 +67,13 @@ namespace WebApp_MVC_auth_jwt.Controllers
             return Redirect("/");
         }
 
-        public async Task<IActionResult> Check(string? id, string pass, string? url)
+        [HttpPost]
+        [HttpGet]
+        public IActionResult Check(string id, string pass, string url)
         {
-            if (User.Identity.IsAuthenticated) return Redirect("/");
+            //if (User.Identity.IsAuthenticated) return Redirect("/");
+
+            WriteLine($"{Request.Query["id"]} -- {Request.Query["pass"]}");
 
             WriteLine($"{id} -- {pass}");
             Student? student = students.FirstOrDefault(x => x.Id == id && x.Pass == pass);
@@ -103,8 +113,15 @@ namespace WebApp_MVC_auth_jwt.Controllers
             return View();
         }
 
+        public IActionResult Proxy(string pg, string tkn)
+        {
+            Request.Headers.Append("Authorization", $"Bearer {tkn}");
+            return RedirectToAction(pg);
+        }
+
         public IActionResult Privacy()
         {
+            WriteLine($"prive test: {ViewData["tkn"]}");
             return View();
         }
 

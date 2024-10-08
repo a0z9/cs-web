@@ -78,6 +78,6 @@ public class AOPtions
 
     public static SymmetricSecurityKey GetKey() {
 
-        return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+    return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
     }
 }
