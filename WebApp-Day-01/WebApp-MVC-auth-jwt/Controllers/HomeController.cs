@@ -32,6 +32,11 @@ namespace WebApp_MVC_auth_jwt.Controllers
         [Route("t")]
         public IActionResult Test() => View();
 
+        public IActionResult Status(int id) {
+            ViewData["status_code"] = id;
+            return View(); }
+    
+
         [Authorize(Roles ="master, phd")]
         public IActionResult Master()
         {

@@ -56,11 +56,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
+app.UseStatusCodePagesWithReExecute("/home/status","?id={0}");
 app.UseAuthentication();
 app.UseAuthorization();
 
