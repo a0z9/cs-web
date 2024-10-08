@@ -56,6 +56,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseStaticFiles();
+
 app.UseStatusCodePagesWithReExecute("/home/status","?id={0}");
 app.UseAuthentication();
 app.UseAuthorization();

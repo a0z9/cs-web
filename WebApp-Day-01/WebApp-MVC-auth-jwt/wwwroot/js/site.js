@@ -1,6 +1,7 @@
 ﻿
-document.getElementById("master").addEventListener("click", async event => {
-
+document.getElementById("link_Master").addEventListener("click", async event => {
+    event.preventDefault();
+   
     await $.ajax(
         {
             url: "/home/master",
@@ -9,10 +10,11 @@ document.getElementById("master").addEventListener("click", async event => {
             complete: (r) => {
                 console.log("Status: " + r.status);
                 console.log(r);
+                if (r.status == 200) document.write(r.responseText);
+                else location.href = "/home/status?id=" + r.status;
             }
         }
     );
-
 
 });
 

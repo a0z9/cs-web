@@ -33,7 +33,7 @@
                         @foreach (string grade in grades)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action=@grade>@grade</a>
+                                <a class="nav-link text-dark grades" id="link_@grade" asp-area="" asp-controller="Home" asp-action=@grade>@grade</a>
                             </li>
                         }
 
@@ -70,7 +70,9 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+   @*  <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script> *@
+    <script src="~/js/site.js" ></script>
   
     @await RenderSectionAsync("Scripts", required: false)
 
