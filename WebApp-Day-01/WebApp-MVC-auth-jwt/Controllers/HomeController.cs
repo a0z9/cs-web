@@ -16,15 +16,16 @@ namespace WebApp_MVC_auth_jwt.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger2)
         {
-            _logger = logger;
+            logger = logger2;
         }
 
         public IActionResult Index()
         {
+            logger.Log(LogLevel.Information, "Index page called");
             return View();
         }
 
@@ -63,6 +64,7 @@ namespace WebApp_MVC_auth_jwt.Controllers
 
         public IActionResult Login()
         {
+            logger.LogWarning("Login attemt! ");
             //if (User.Identity.IsAuthenticated) return Redirect("/");
             return View();
         }
@@ -126,9 +128,17 @@ namespace WebApp_MVC_auth_jwt.Controllers
             return RedirectToAction(pg);
         }
 
+        [Route("err")]
+        public void Error2() {
+            int a = 1,b;
+            b = 1 / (1 - a);
+        
+        }
+
         public IActionResult Privacy()
         {
             WriteLine($"prive test: {ViewData["tkn"]}");
+
             return View();
         }
 
