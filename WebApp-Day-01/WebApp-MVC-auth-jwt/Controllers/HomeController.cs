@@ -9,6 +9,8 @@ using static System.Console;
 using static WebApp_MVC_auth_jwt.Models.Students;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
 
 namespace WebApp_MVC_auth_jwt.Controllers
 {
@@ -137,3 +139,10 @@ namespace WebApp_MVC_auth_jwt.Controllers
         }
     }
 }
+
+// check JWT expiration -> browser F12 debug
+
+// var segs = sessionStorage['token'].split('.');
+// d = JSON.parse(atob(segs[1])).exp;
+// console.log(new Date(d * 1000), "\n", new Date());
+// console.loge(d - Date.now() * .001); 
