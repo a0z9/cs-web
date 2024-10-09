@@ -44,6 +44,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     
     );
 
+//builder.Logging.
+
 builder.Services.AddAuthorization();
 var app = builder.Build();
 
