@@ -100,7 +100,7 @@ namespace WebApp_MVC_auth_jwt.Controllers
                 audience:AOPtions.AUDIENCE,
                 claims: claims,
                 signingCredentials: new SigningCredentials(AOPtions.GetKey(),SecurityAlgorithms.HmacSha256),
-                expires: DateTime.Now.Add(TimeSpan.FromMinutes(5))
+                expires: DateTime.Now.Add(TimeSpan.FromSeconds(120))
                 );
 
             var jwt2 = new JwtSecurityTokenHandler().WriteToken(jwt); //base64 encoded token
