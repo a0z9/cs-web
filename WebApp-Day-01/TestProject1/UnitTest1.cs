@@ -7,8 +7,6 @@ using Moq;
 using Microsoft.AspNetCore.Http;
 
 
-
-
 namespace TestProject1
 {
     public class Tests
@@ -32,14 +30,13 @@ namespace TestProject1
         [Test]
         public void TestHomeController5()
         {
-            wapp5.HomeController ctr = new wapp5.HomeController(new NullLogger<wapp5.HomeController>());
-            //var ctx = new MockRepository(MockBehavior.Strict).Create<ControllerContext>();
+            wapp5.HomeController ctr2 = new wapp5.HomeController(new NullLogger<wapp5.HomeController>());
+           
+            ctr2.ControllerContext.HttpContext  = new DefaultHttpContext();
+            ctr2.ControllerContext.HttpContext.Request.Headers["AAA"] = "BBB";
 
-           // var ctx = new Mock<HttpContext>();
-           // var req = new Mock<HttpRequest>();
-            
-
-
+            Mock<ISession> sessionMock = new Mock<ISession>();
+            ctr2.ControllerContext.HttpContext.Session = sessionMock.Object;
 
             ViewResult res = ctr.Index() as ViewResult;
 
