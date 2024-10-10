@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebApp5-mvc\WebApp5-mvc.csproj" />
+    <ProjectReference Include="..\WebApp-MVC-test\WebApp-MVC-test.csproj" />
   </ItemGroup>
 
   <ItemGroup>
