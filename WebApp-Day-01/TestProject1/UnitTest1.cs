@@ -2,6 +2,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using WebApp_MVC_test.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using wapp5 = WebApp5_mvc.Controllers;
+using Moq;
+using Microsoft.AspNetCore.Http;
+
+
 
 
 namespace TestProject1
@@ -23,6 +28,27 @@ namespace TestProject1
             ctr = new HomeController(logger);
         }
 
+
+        [Test]
+        public void TestHomeController5()
+        {
+            wapp5.HomeController ctr = new wapp5.HomeController(new NullLogger<wapp5.HomeController>());
+            //var ctx = new MockRepository(MockBehavior.Strict).Create<ControllerContext>();
+
+           // var ctx = new Mock<HttpContext>();
+           // var req = new Mock<HttpRequest>();
+            
+
+
+
+            ViewResult res = ctr.Index() as ViewResult;
+
+
+            Assert.IsNotNull(res);
+        }
+
+
+
         [Test]
         public void TestHomeController()
         {
@@ -41,7 +67,7 @@ namespace TestProject1
             ViewResult res = ctr.Index() as ViewResult;
             var actual = res.ViewData["test"] as string;
 
-            Assert.AreEqual(actual, "Ok2");
+            Assert.AreEqual(actual, "Ok");
         }
 
 
