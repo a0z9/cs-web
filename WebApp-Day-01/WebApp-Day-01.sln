@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp-MVC-auth-cookiee", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp-MVC-auth-jwt", "WebApp-MVC-auth-jwt\WebApp-MVC-auth-jwt.csproj", "{B15F537D-C829-4345-A4DE-1BFD22C4AABF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{967AFF84-A3C5-4CF4-A21F-452DD7EDF145}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{B15F537D-C829-4345-A4DE-1BFD22C4AABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B15F537D-C829-4345-A4DE-1BFD22C4AABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B15F537D-C829-4345-A4DE-1BFD22C4AABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{967AFF84-A3C5-4CF4-A21F-452DD7EDF145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{967AFF84-A3C5-4CF4-A21F-452DD7EDF145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{967AFF84-A3C5-4CF4-A21F-452DD7EDF145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{967AFF84-A3C5-4CF4-A21F-452DD7EDF145}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
