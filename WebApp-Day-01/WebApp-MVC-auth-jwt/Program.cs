@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-
+using WebApp_MVC_auth_jwt.Utils;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -46,7 +46,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 //builder.Logging.
 
+builder.Logging.ClearProviders();
+
+builder.Logging.AddConsole();
+
+builder.Logging.AddFile();
+
 builder.Services.AddAuthorization();
+
+
+
 var app = builder.Build();
 
 
