@@ -17,15 +17,15 @@ namespace WebApp_MVC_auth_jwt.Utils
         public IDisposable? BeginScope<TState>(TState state) where TState : notnull => this;
        
         public void Dispose() {}
-      
-        public bool IsEnabled(LogLevel logLevel) => logLevel >= logLevelLimit;
+
+        public bool IsEnabled(LogLevel logLevel) => true; // logLevel >= logLevelLimit;
       
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
         {
             string dateString = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.ffffff zzz: ");
 
             lock (o)
-            File.AppendAllText(filename, $"{dateString} [{logLevel.ToString():10}] {formatter(state, exception)}\n");
+            File.AppendAllText(filename, $"{dateString} [{logLevel.ToString(),11}] {formatter(state, exception)}\n");
 
         }
     }

@@ -46,15 +46,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 //builder.Logging.
 
+// 1. log4net
+// 2. NLog
+
 builder.Logging.ClearProviders();
 
 builder.Logging.AddConsole();
 
-builder.Logging.AddFile();
+builder.Logging.AddFile().SetMinimumLevel(LogLevel.Trace);
+
+//builder.Logging.AddFilter("Microsoft.AspNetCore", LogLevel.Trace).SetMinimumLevel(LogLevel.Trace);
 
 builder.Services.AddAuthorization();
-
-
 
 var app = builder.Build();
 
