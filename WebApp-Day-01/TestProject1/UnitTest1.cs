@@ -38,7 +38,7 @@ namespace TestProject1
             Mock<ISession> sessionMock = new Mock<ISession>();
             ctr2.ControllerContext.HttpContext.Session = sessionMock.Object;
 
-            ViewResult res = ctr.Index() as ViewResult;
+            ViewResult res = ctr2.Index() as ViewResult;
 
 
             Assert.IsNotNull(res);
