@@ -3,6 +3,26 @@ POST https://localhost:7203/students
 Content-Type: application/json
 
 {
-"name": "Peter",
+"name": "Alice Carrol",
 "IsReady" : true
 }
+
+###
+
+
+PUT https://localhost:7203/students/2
+Content-Type: application/json
+
+{
+"name": "Basil the Wolf",
+"IsReady" : true
+}
+
+###
+DELETE https://localhost:7203/students/2
+
+
+
+
+
+###

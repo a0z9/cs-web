@@ -38,6 +38,33 @@ app.MapPost("/students", async (Student student, StudentDb db) =>
 }
  );
 
+app.MapPut("/students/{id}", async (int id, Student changedStudent, StudentDb db) =>
+{
+    var student = await db.Students.FindAsync(id);
+    if(student is null) return Results.NotFound();
+
+    student.Name = changedStudent.Name;
+    student.IsReady = changedStudent.IsReady;
+    //.....
+
+    await db.SaveChangesAsync();
+    return Results.Ok(); // $"/students/{student.Id}", student);
+}
+ );
+
+app.MapDelete("/students/{id}", async (int id, StudentDb db) =>
+{
+
+    var student = await db.Students.FindAsync(id);
+    if (student is null) return Results.NotFound();
+
+    db.Students.Remove(student);
+    await db.SaveChangesAsync();
+    return Results.NoContent();
+}
+ );
+
+
 app.MapGet("/api", () => "Hello Api Test!");
 
 app.Run();
