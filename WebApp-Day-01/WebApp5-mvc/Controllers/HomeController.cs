@@ -22,6 +22,8 @@ namespace WebApp5_mvc.Controllers
         {
             var sess = HttpContext.Session;
             foreach (var k in sess.Keys) WriteLine($"{k} -> {sess.GetString(k)}");
+
+          
             if (sess.Keys.Contains("sess_data"))
             {
                 WriteLine($"Sess (id:{sess.Id}) data exists = {sess.GetString("sess_data")}");

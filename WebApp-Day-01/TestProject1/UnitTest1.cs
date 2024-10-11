@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using wapp5 = WebApp5_mvc.Controllers;
 using Moq;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.Web;
 
 
 namespace TestProject1
@@ -30,23 +34,31 @@ namespace TestProject1
         [Test]
         public void TestHomeController5()
         {
-            wapp5.HomeController ctr2 = new wapp5.HomeController(new NullLogger<wapp5.HomeController>());
            
+            Mock<ILogger<wapp5.HomeController>> mockLogger = new Mock<ILogger<wapp5.HomeController>>(MockBehavior.Strict);
+          
+            wapp5.HomeController ctr2 = new wapp5.HomeController(mockLogger.Object);
+            //wapp5.HomeController ctr2 = new wapp5.HomeController(new NullLogger<wapp5.HomeController>());
+
             ctr2.ControllerContext.HttpContext  = new DefaultHttpContext();
             ctr2.ControllerContext.HttpContext.Request.Headers["AAA"] = "BBB";
 
-            Mock<ISession> sessionMock = new Mock<ISession>();
+            Mock<ISession> sessionMock =
+              new Mock<ISession>(MockBehavior.Default);
+
             ctr2.ControllerContext.HttpContext.Session = sessionMock.Object;
 
+            var sess = sessionMock.Object;
+            sess.SetString("sess_data", "good test"); // fake save!
+
+           
             ViewResult res = ctr2.Index() as ViewResult;
-
-
-            Assert.IsNotNull(res);
+            
+                 Assert.IsNotNull(res);
         }
 
 
-
-        [Test]
+               [Test]
         public void TestHomeController()
         {
            //  HomeController ctr = new HomeController(logger);
@@ -69,4 +81,7 @@ namespace TestProject1
 
 
     }
+
+   
+
 }
