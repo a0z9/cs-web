@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp-MVC-auth-cookiee", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp-MVC-auth-jwt", "WebApp-MVC-auth-jwt\WebApp-MVC-auth-jwt.csproj", "{B15F537D-C829-4345-A4DE-1BFD22C4AABF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{967AFF84-A3C5-4CF4-A21F-452DD7EDF145}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "TestProject1\TestProject1.csproj", "{967AFF84-A3C5-4CF4-A21F-452DD7EDF145}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp-MVC-test", "WebApp-MVC-test\WebApp-MVC-test.csproj", "{B0D65071-4986-4619-81E0-7D232D4D9B84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp-MVC-test", "WebApp-MVC-test\WebApp-MVC-test.csproj", "{B0D65071-4986-4619-81E0-7D232D4D9B84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp-MInimal-Api", "WebApp-MInimal-Api\WebApp-MInimal-Api.csproj", "{2C8FEA83-32FE-4F45-A946-06A967371098}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{B0D65071-4986-4619-81E0-7D232D4D9B84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0D65071-4986-4619-81E0-7D232D4D9B84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0D65071-4986-4619-81E0-7D232D4D9B84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C8FEA83-32FE-4F45-A946-06A967371098}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C8FEA83-32FE-4F45-A946-06A967371098}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C8FEA83-32FE-4F45-A946-06A967371098}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C8FEA83-32FE-4F45-A946-06A967371098}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
