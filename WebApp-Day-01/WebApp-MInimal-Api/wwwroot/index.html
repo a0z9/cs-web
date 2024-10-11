@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+
+<h3> Студенты </h3>
+
+<div id="students"> </div>
+
+
+<script> 
+
+    let students = document.getElementById("students");
+    students.innerHTML = "students list"; 
+
+    const url = "https://localhost:7203/students";
+
+    fetch(url,
+        { method: "GET" }).
+        then((resp) => resp.json()).
+        then((data) => {
+            console.log(data);
+        });
+     
+
+
+    </script>
+
+</body>
+</html>

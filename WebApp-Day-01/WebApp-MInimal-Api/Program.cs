@@ -67,4 +67,6 @@ app.MapDelete("/students/{id}", async (int id, StudentDb db) =>
 
 app.MapGet("/api", () => "Hello Api Test!");
 
+app.UseStaticFiles();
+
 app.Run();

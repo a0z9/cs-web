@@ -3,7 +3,7 @@ POST https://localhost:7203/students
 Content-Type: application/json
 
 {
-"name": "Alice Carrol",
+"name": "Basil",
 "IsReady" : true
 }
 
