@@ -16,17 +16,22 @@ namespace TestProject1
     public class Tests
     {
         public HomeController ctr;
+        public wapp5.HomeController ctr2;
 
+        private Mock<ILogger<wapp5.HomeController>> mockLogger = new Mock<ILogger<wapp5.HomeController>>(MockBehavior.Strict);
         private readonly ILogger<HomeController> logger = new NullLogger<HomeController>();
+
 
         [TearDown]
         public void Clear() { 
          ctr.Dispose();
+         ctr2.Dispose();
         }
 
         [SetUp]
         public void Setup()
         {
+            ctr2 = new wapp5.HomeController(mockLogger.Object);
             ctr = new HomeController(logger);
         }
 
@@ -35,9 +40,9 @@ namespace TestProject1
         public void TestHomeController5()
         {
            
-            Mock<ILogger<wapp5.HomeController>> mockLogger = new Mock<ILogger<wapp5.HomeController>>(MockBehavior.Strict);
+            //Mock<ILogger<wapp5.HomeController>> mockLogger = new Mock<ILogger<wapp5.HomeController>>(MockBehavior.Strict);
           
-            wapp5.HomeController ctr2 = new wapp5.HomeController(mockLogger.Object);
+            //wapp5.HomeController ctr2 = new wapp5.HomeController(mockLogger.Object);
             //wapp5.HomeController ctr2 = new wapp5.HomeController(new NullLogger<wapp5.HomeController>());
 
             ctr2.ControllerContext.HttpContext  = new DefaultHttpContext();
