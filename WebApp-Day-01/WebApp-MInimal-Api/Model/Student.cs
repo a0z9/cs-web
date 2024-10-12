@@ -1,11 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApp_MInimal_Api.Model
 {
     public class Student
     {
      public int Id { get; set; }
-     public string Name { get; set; }  
+     
+     public string Name { get; set; }
+
+     [Required]   
+     public string Email { get; set; }
      public bool IsReady { get; set; }
     //....
 

@@ -19,9 +19,9 @@ var app = builder.Build();
 
 app.MapGet("/init", async(StudentDb db) =>
 {
-    db.Students.Add(new Student { Name = "Alice", IsReady = true });
-    db.Students.Add(new Student { Name = "Jane", IsReady = false });
-    db.Students.Add(new Student { Name = "Robert", IsReady = true });
+    db.Students.Add(new Student { Name = "Alice", IsReady = true, Email="alice21@ikit.ru" });
+    db.Students.Add(new Student { Name = "Jane", IsReady = false, Email = "jane1@ikit.ru" });
+    db.Students.Add(new Student { Name = "Robert", IsReady = true, Email = "bob17@ikit.ru" });
     await db.SaveChangesAsync();
 
     return Results.LocalRedirect("/");
