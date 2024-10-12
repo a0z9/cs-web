@@ -26,7 +26,7 @@ namespace WebApp_MInimal_Api.Model
                          ILogger<StudentDb> logger) : base(opt)
         { 
           this.logger = logger;
-            logger.LogInformation($"+++ Db Ctx {ContextId}");
+         //logger.LogInformation($"+++ Db Ctx {ContextId}");
         }
 
         public DbSet<Student> Students => Set<Student>();
