@@ -11,11 +11,18 @@ namespace WebApp_MInimal_Api.Model
 
     }
 
+
+
     public class StudentDb : DbContext
     {
-        public StudentDb(DbContextOptions<StudentDb> opt
-            ) : base(opt)
-        { }
+        private ILogger<StudentDb> logger;
+
+        public StudentDb(DbContextOptions<StudentDb> opt,
+                         ILogger<StudentDb> logger) : base(opt)
+        { 
+          this.logger = logger;
+            logger.LogInformation($"+++ Db Ctx {ContextId}");
+        }
 
         public DbSet<Student> Students => Set<Student>();
 
