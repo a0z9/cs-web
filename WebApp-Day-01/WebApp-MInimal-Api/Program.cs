@@ -16,6 +16,18 @@ builder.Services.AddDbContext<StudentDb>(opt =>
 
 var app = builder.Build();
 
+
+app.MapGet("/init", async(StudentDb db) =>
+{
+    db.Students.Add(new Student { Name = "Alice", IsReady = true });
+    db.Students.Add(new Student { Name = "Jane", IsReady = false });
+    db.Students.Add(new Student { Name = "Robert", IsReady = true });
+    await db.SaveChangesAsync();
+
+    return Results.LocalRedirect("/");
+}
+);
+
 app.MapGet("/students", async (StudentDb db) =>
 await db.Students.ToListAsync()
  );
@@ -67,6 +79,16 @@ app.MapDelete("/students/{id}", async (int id, StudentDb db) =>
 
 app.MapGet("/api", () => "Hello Api Test!");
 
-app.UseStaticFiles();
+DefaultFilesOptions DFopts = new DefaultFilesOptions { 
+DefaultFileNames = new List<string> { "blabla.hhml","index.html" }
+
+};
+
+app.UseDefaultFiles(DFopts);
+app.UseStaticFiles(new StaticFileOptions { 
+
+});
+
+
 
 app.Run();
