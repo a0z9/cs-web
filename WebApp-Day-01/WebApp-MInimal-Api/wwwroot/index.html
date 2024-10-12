@@ -10,53 +10,45 @@
 
 
 <h3> Студенты </h3>
+<div><button id="showAddForm">Добавить</button>  </div>
+<div id="student"></div>
+<button id="sendData">Отправить</button>
 <div id="students"> </div>
 
 
 <script> 
-
     const students = document.getElementById("students");
-    const table = document.createElement('table');
-    table.className = "students";
+    updateStudents(students, location.origin + "/students");
 
-    const columns = [
-        { "id": "id", "name": "Id" },
-        { "id": "name", "name": "Имя" },
-        { "id": "email", "name": "Эл. почта" },
-        { "id": "isReady", "name": "isReady" }
-    ];
+    const student = document.getElementById("student");
 
-    let records = '<tr>';
-    columns.forEach(col => records += `<th class=${col.id}>${col.name}</th>`)
-    records += '</tr>';
+    document.getElementById('showAddForm').onclick = function (e) {
+        showAddForm(student);
+    };
 
-    //students.innerHTML = "students list";
+    document.getElementById("sendData").onclick = function (e) {
 
-    const url = location.origin + "/students"; //"https://localhost:7203/students";
+        let name = document.querySelector('input[name="name"]').value;
+        let email = document.querySelector('input[name="email"]').value;
+        let isReady = document.querySelector('input[name="isReady"]').checked;
+
+        console.log(name, "-", email, "-", isReady);
+
+        let student = { "name": name, "email": email, "isReady": isReady };
 
 
-    fetch(url,
-        { method: "GET" }).
-        then((resp) => resp.json()).
-        then((data) => {
-            //console.log(data);
 
-            data.forEach(student => {
-                console.log(student);
-                records += '<tr>';
-                columns.forEach(col => records += `<td class=${col.id}>${student[col.id]}</td>`);
-                records += '</tr>';
-            });
-            console.log('fetch:', records);
-            table.innerHTML = records;
-            students.appendChild(table);
-        });
+        fetch(location.origin + "/students",
+            {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(student)
+            }).
+            then(resp => { console.log(resp); updateStudents(students, location.origin + "/students"); });
+  };
 
-    console.log("main:", records);
 
-    //table.innerHTML = records;
-    //students.appendChild(table);
-    </script>
+ </script>
 
 </body>
 </html>

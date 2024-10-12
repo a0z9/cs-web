@@ -1,4 +1,42 @@
 ﻿
 table.students {
-  width: 75%;
+  width: 55%;
+  border-collapse: collapse;
+}
+
+.id, .isReady {
+  width: 10%;
+}
+
+.students td, .students th {
+ border: 1px solid #0f4c17;
+ padding: 8px;
+
+}
+
+.students tr:nth-child(2n+1) {
+ background-color: #f1f1f1;
+}
+
+.students tr:hover{
+ background-color: #ddd;
+
+}
+
+.name {
+width: 30%;
+}
+
+button {
+    padding: 5px;
+    margin: 5px;
+}
+
+.students th 
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    background-color: #70b962;
+    text-align: left;
 }
