@@ -39,11 +39,23 @@
         { method: "GET" }).
         then((resp) => resp.json()).
         then((data) => {
-            console.log(data);
+            //console.log(data);
+
+            data.forEach(student => {
+                console.log(student);
+                records += '<tr>';
+                columns.forEach(col => records += `<td class=${col.id}>${student[col.id]}</td>`);
+                records += '</tr>';
+            });
+            console.log('fetch:', records);
+            table.innerHTML = records;
+            students.appendChild(table);
         });
 
-    table.innerHTML = records;
-    students.appendChild(table);
+    console.log("main:", records);
+
+    //table.innerHTML = records;
+    //students.appendChild(table);
     </script>
 
 </body>
