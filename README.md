@@ -10,3 +10,4 @@
 8. Minimal API
 9. Введение в RESTfulAPI/OpenAPI/Swagger
 10. Введение в OData
+11. Заключение. Резюме курса. Тест.
